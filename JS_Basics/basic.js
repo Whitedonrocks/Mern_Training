@@ -26,7 +26,7 @@ console.log(username.indexOf('y')); //Gives insdex of the given character gives 
 console.log(username.concat(lname));
 console.log(lname+" "+username);
 
-console.log("My First name is "+username+" and Last name is "+lname+".");
+console.log("My First name is "+username+" and Laconsole.log(results);st name is "+lname+".");
 console.log(`My First name is ${username} and Last name is ${lname}`);       //Template Literal
 
 let age =17;
@@ -50,3 +50,13 @@ function add (num1,num2){
         let sum=num1+num2;
         return sum;
 }
+
+const add2 =(num1,num2)=>num1+num2;  //Anonymous funcation
+let result=add2(2,3);
+console.log(result);
+
+const add1 =(num1,num2)=>{
+    let sum=num1+num2;
+    return sum;
+}  
+console.log(add1(5,8));
