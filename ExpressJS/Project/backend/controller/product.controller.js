@@ -24,8 +24,33 @@ const getProductById= async(req,res)=>{
     if(products){
         res.send(products);
     }else {
-        res.status(400).send({error: "Product not found !"});
+        res.status(404).send({error: "Product not found !"});
     }
 };
 
-export {getProducts,getProductById,addProduct};
+const updateProduct=async (req,res)=>{
+    const {id}=req.params;
+    const {name,price,category,brand,image,description}=req.body;
+    const product=await Product.findById(id);
+
+    if(!product) return res.status(404).send({error:"Product not Found"});
+
+    product.name=name||product.name;
+    product.price=price||product.price;
+    product.category=category|| product.category;
+    product.brand=brand||product.brand;
+    product.image=image||product.image;
+    product.description=description||product.description;
+    await product.save();
+    res.send({message:"Product Updated!"});
+};
+
+const deleteProduct=async (req,res)=>{
+    const {id}=req.params;
+    const product=await Product.findByIdAndDelete(id);
+
+    if(!product) return res.status(404).send({error:"Product not Found"});
+    else
+        res.send({message:"Product deleted sucessfully"});
+};
+export {getProducts,getProductById,addProduct,updateProduct,deleteProduct};

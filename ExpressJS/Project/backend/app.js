@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoos from 'mongoose';
 import productRouter from './routes/product.route.js';
+import UserRouter from './routes/user.route.js';
 
 const app= express();
 
@@ -16,6 +17,7 @@ app.get("/",(req,res)=>{
 })
 
 app.use("/api/products",productRouter);
+app.use("/api/auth",UserRouter)
 
 
 app.listen(3000,()=>console.log("Server is up and running"));
