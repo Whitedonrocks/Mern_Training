@@ -6,6 +6,8 @@ import {
     updateProduct,
     deleteProduct,
 } from "../controller/product.controller.js";
+import { checkAuth,checkAdmin } from '../middleware/auth.js';
+
 
 const router=express.Router();
 
@@ -13,7 +15,7 @@ router.get("/",getProducts);
 
 router.get("/:id",getProductById);
 
-router.post("/",addProduct);
+router.post("/",checkAuth,checkAdmin,addProduct);
 
 router.put("/:id",updateProduct);
 

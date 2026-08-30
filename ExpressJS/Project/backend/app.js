@@ -2,6 +2,8 @@ import express from 'express';
 import mongoos from 'mongoose';
 import productRouter from './routes/product.route.js';
 import UserRouter from './routes/user.route.js';
+import logger from './middleware/logger.js';
+import cookieParser from 'cookie-parser';
 
 const app= express();
 
@@ -11,6 +13,8 @@ mongoos
     .catch((err)=>console.log("Error connecting to DB",err.message))
 
 app.use(express.json());
+app.use(logger);
+app.use(cookieParser());
 
 app.get("/",(req,res)=>{
     res.send({message:"Server is running"});
