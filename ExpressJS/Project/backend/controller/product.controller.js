@@ -1,7 +1,7 @@
 import Product from "../model/products.js";
 
 const getProducts=async (req,res)=>{
-    const products=await Product.find();
+    const products=await Product.find().populate("user","fullname email-_id");
     res.send(products);
 };
 
@@ -11,7 +11,8 @@ const addProduct=async (req,res)=>{
         price:10,
         description:'Sanple Description',
         brand:'Sample Brand',
-        category:'Sample Category'
+        category:'Sample Category',
+        user:req.user._id
     };
     const product=await Product.create(newProducts);
     res.send({message:"Product added sucessfully"});
