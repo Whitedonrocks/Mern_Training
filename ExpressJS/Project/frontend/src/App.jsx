@@ -1,5 +1,19 @@
+import Header from './components/Header';
+import Footer from './components/Footer';
+import{Outlet} from 'react-router'
+import { Container } from 'react-bootstrap';
 function App() {
-  return <h1>Welcome to My Heart Project</h1>
+  return (
+    <>
+      <Header />
+      <main className='my-3'>
+        <Container>
+          <Outlet />
+        </Container>
+      </main>
+      <Footer />
+    </>
+  )
 }
 
 export default App;
